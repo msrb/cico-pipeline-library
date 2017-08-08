@@ -24,7 +24,7 @@ def call(Closure body) {
 
         addNode(nodeName)
 
-        node(nodeName) {
+        node {
             body()
         }
 
