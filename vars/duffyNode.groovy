@@ -29,9 +29,7 @@ def call(Closure body) {
         //}
 
     } finally {
-        if (slave != null) {
-            removeNode(nodeName)
-        }
+        removeNode(nodeName)
     }
 }
 
