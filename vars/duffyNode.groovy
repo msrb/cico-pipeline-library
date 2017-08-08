@@ -24,7 +24,7 @@ def call(Closure body) {
                     new RetentionStrategy.Always(),
                     new LinkedList())
 
-        Jenkins.instance.addNode(slave)
+        addNode(slave)
 
         node(nodeName) {
             body()
@@ -32,7 +32,18 @@ def call(Closure body) {
 
     } finally {
         if (slave != null) {
-            Jenkins.instance.removeNode(slave)
+            removeNode(slave)
         }
     }
 }
+
+@NonCPS
+def addNode(slave) {
+    Jenkins.instance.addNode(slave)
+}
+
+@NonCPS
+def removeNode(slave) {
+    Jenkins.instance.removeNode(slave)
+}
+
