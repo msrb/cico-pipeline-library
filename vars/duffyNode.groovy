@@ -35,7 +35,7 @@ def addNode(nodeName) {
                     new SSHLauncher("agenNode", 22, "user", "password", "", "", "", "", ""),
                     new RetentionStrategy.Always(),
                     new LinkedList())
-    Jenkins.instance.addNode(getSlave(nodeName))
+    Jenkins.instance.addNode(node)
 }
 
 @NonCPS
