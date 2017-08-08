@@ -24,9 +24,9 @@ def call(Closure body) {
 
         addNode(nodeName)
 
-        node {
-            body()
-        }
+        //node {
+        //    body()
+        //}
 
     } finally {
         if (slave != null) {
