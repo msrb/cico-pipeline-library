@@ -26,7 +26,8 @@ def call(Closure body) {
 
         addNode(slave)
 
-        node(nodeName) {
+        //node(nodeName) {
+        node('abc') {
             body()
         }
 
