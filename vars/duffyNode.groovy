@@ -40,7 +40,7 @@ def addNode(nodeName) {
 
 @NonCPS
 def removeNode(nodeName) {
-    Jenkins.instance.removeNode(getSlave(nodeName))
+    Jenkins.instance.removeNode(Jenkins.instance.getNode(nodeName))
 }
 
 @NonCPS
