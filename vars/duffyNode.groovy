@@ -10,24 +10,22 @@ def call(Closure body) {
 
     String nodeName = "duffy-" + UUID.randomUUID().toString();
 
-    final Slave slave
+    final Slave slave = new DumbSlave(
+                            nodeName,
+                            "Agent node description",
+                            "/home/jenkins",
+                            "1",
+                            Node.Mode.EXCLUSIVE,
+                            nodeName,
+                            new SSHLauncher("agenNode", 22, "user", "password", "", "", "", "", ""),
+                            new RetentionStrategy.Always(),
+                            new LinkedList())
 
     try {
-        slave = new DumbSlave(
-                    nodeName,
-                    "Agent node description",
-                    "/home/jenkins",
-                    "1",
-                    Node.Mode.EXCLUSIVE,
-                    nodeName,
-                    new SSHLauncher("agenNode", 22, "user", "password", "", "", "", "", ""),
-                    new RetentionStrategy.Always(),
-                    new LinkedList())
 
         addNode(slave)
 
-        //node(nodeName) {
-        node('abc') {
+        node(nodeName) {
             body()
         }
 
