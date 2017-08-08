@@ -19,7 +19,7 @@ def call(Closure body) {
         }
 
     } finally {
-        removeNode(nodeName)
+        //removeNode(nodeName)
     }
 }
 
