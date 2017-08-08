@@ -20,7 +20,7 @@ def call(Closure body) {
     //                        new SSHLauncher("agenNode", 22, "user", "password", "", "", "", "", ""),
     //                        new RetentionStrategy.Always(),
     //                        new LinkedList())
-    final Slave slave = getSlave(nodeName)
+    Slave slave = getSlave(nodeName)
 
     try {
 
