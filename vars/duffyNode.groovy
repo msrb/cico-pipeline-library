@@ -20,7 +20,7 @@ def call(Closure body) {
     //                        new SSHLauncher("agenNode", 22, "user", "password", "", "", "", "", ""),
     //                        new RetentionStrategy.Always(),
     //                        new LinkedList())
-    final Slave slave = getSlave()
+    final Slave slave = getSlave(nodeName)
 
     try {
 
@@ -48,7 +48,7 @@ def removeNode(slave) {
 }
 
 @NonCPS
-def getSlave() {
+def getSlave(nodeName) {
     return new DumbSlave(
                             nodeName,
                             "Agent node description",
