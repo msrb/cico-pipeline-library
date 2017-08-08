@@ -20,43 +20,41 @@ def call(Closure body) {
     //                        new SSHLauncher("agenNode", 22, "user", "password", "", "", "", "", ""),
     //                        new RetentionStrategy.Always(),
     //                        new LinkedList())
-    Slave slave = getSlave(nodeName)
-
     try {
 
-        addNode(slave)
+        addNode(nodeName)
 
-        //node(nodeName) {
-        //    body()
-        //}
+        node(nodeName) {
+            body()
+        }
 
     } finally {
         if (slave != null) {
-            removeNode(slave)
+            removeNode(nodeName)
         }
     }
 }
 
 @NonCPS
-def addNode(slave) {
-    Jenkins.instance.addNode(slave)
+def addNode(nodeName) {
+    Jenkins.instance.addNode(getSlave(nodeName))
 }
 
 @NonCPS
-def removeNode(slave) {
-    Jenkins.instance.removeNode(slave)
+def removeNode(nodeName) {
+    Jenkins.instance.removeNode(getSlave(nodeName))
 }
 
 @NonCPS
 def getSlave(nodeName) {
     return new DumbSlave(
-                            nodeName,
-                            "Agent node description",
-                            "/home/jenkins",
-                            "1",
-                            Node.Mode.EXCLUSIVE,
-                            nodeName,
-                            new SSHLauncher("agenNode", 22, "user", "password", "", "", "", "", ""),
-                            new RetentionStrategy.Always(),
-                            new LinkedList())
+               nodeName,
+               "Agent node description",
+               "/home/jenkins",
+               "1",
+               Node.Mode.EXCLUSIVE,
+               nodeName,
+               new SSHLauncher("agenNode", 22, "user", "password", "", "", "", "", ""),
+               new RetentionStrategy.Always(),
+               new LinkedList())
 }
