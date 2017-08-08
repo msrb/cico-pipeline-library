@@ -10,16 +10,17 @@ def call(Closure body) {
 
     String nodeName = "duffy-" + UUID.randomUUID().toString();
 
-    final Slave slave = new DumbSlave(
-                            nodeName,
-                            "Agent node description",
-                            "/home/jenkins",
-                            "1",
-                            Node.Mode.EXCLUSIVE,
-                            nodeName,
-                            new SSHLauncher("agenNode", 22, "user", "password", "", "", "", "", ""),
-                            new RetentionStrategy.Always(),
-                            new LinkedList())
+    //final Slave slave = new DumbSlave(
+    //                        nodeName,
+    //                        "Agent node description",
+    //                        "/home/jenkins",
+    //                        "1",
+    //                        Node.Mode.EXCLUSIVE,
+    //                        nodeName,
+    //                        new SSHLauncher("agenNode", 22, "user", "password", "", "", "", "", ""),
+    //                        new RetentionStrategy.Always(),
+    //                        new LinkedList())
+    final Slave slave = getSlave()
 
     try {
 
@@ -46,3 +47,16 @@ def removeNode(slave) {
     Jenkins.instance.removeNode(slave)
 }
 
+@NonCPS
+def getSlave() {
+    return new DumbSlave(
+                            nodeName,
+                            "Agent node description",
+                            "/home/jenkins",
+                            "1",
+                            Node.Mode.EXCLUSIVE,
+                            nodeName,
+                            new SSHLauncher("agenNode", 22, "user", "password", "", "", "", "", ""),
+                            new RetentionStrategy.Always(),
+                            new LinkedList())
+}
