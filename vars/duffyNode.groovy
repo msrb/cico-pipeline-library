@@ -13,7 +13,6 @@ def call(Closure body) {
     try {
 
         addNode(nodeName)
-
         node('master') {
             body()
         }
@@ -27,7 +26,7 @@ def call(Closure body) {
 def addNode(nodeName) {
     Node node = new DumbSlave(
                     nodeName,
-                    "Duffy node for " + env.JOB_NAME,
+                    "Duffy node for ${env.JOB_NAME} ${env.BUILD_NUMBER}",
                     "/home/root/",
                     "1",
                     Node.Mode.EXCLUSIVE,
